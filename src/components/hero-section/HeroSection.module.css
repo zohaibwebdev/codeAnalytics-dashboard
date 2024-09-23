@@ -1,0 +1,218 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+.heroSection {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  align-items: center;
+}
+@media (min-width: 1300px) {
+  .heroSection{
+    gap: 50px;
+  }
+  .secondaryHeading{
+    gap:70px
+  }
+}
+.headingContainer {
+  max-width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+@media (max-width:1100px){
+  .headingContainer{
+    max-width: 75%;
+  }
+}
+@media (max-width:850px){
+  .headingContainer{
+    max-width: 100%;
+  }
+}
+.mainHeading {
+  color: #312a50;
+  text-align: center;
+  font-family: Inter;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+}
+.secondaryHeading {
+  max-width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+@media (max-width:850px){
+  .mainHeading{
+    font-size: 40px;
+  }
+  .secondaryHeading{
+    max-width: 90%;
+  }
+}
+
+@media (max-width:450px){
+  .mainHeading{
+    font-size: 30px;
+  }
+}
+.secondaryHeading p {
+  color: #312a50;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.headingButtons {
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  display: flex;
+  border-radius: 70px;
+  overflow: hidden;
+}
+@media (min-width: 1800px) {
+  
+  .mainHeading{
+    font-size: 70px;
+  }
+  .secondaryHeading p{
+    font-size: 20px;
+  }
+}
+@media (max-width:850px){
+
+  .headingButtons{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 0px;
+    box-shadow: none;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .button{
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  }
+}
+
+.button {
+  flex-grow: 1; /* Ensures buttons grow to fill available space equally */
+  flex-shrink: 1; /* Prevents buttons from shrinking less than their content */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  color: #312a50;
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 21px;
+  padding: 16px 32px;
+  border-radius: 70px;
+  min-width: 0; /* Prevents buttons from getting too large */
+  text-align: center; /* Centers text inside the button */
+}
+
+.button span {
+  font-size: 26px;
+}
+
+.button:hover,
+.button:active,
+.clicked,
+.checkButton:hover {
+  background: linear-gradient(
+    161deg,
+    #6714cc 0%,
+    #6714cc 12.73%,
+    #2e68f5 72.95%
+  );
+  color: #ffff;
+}
+
+.headingButtons .button {
+  max-width: 100%; /* Ensures the buttons are contained within the container */
+}
+
+.checkBoxContainer {
+  width: 100%;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.checkButton {
+  width: 143.5px;
+  max-width: 143.5px;
+  height: 78px;
+  max-height: 78px;
+  flex-grow: 1;
+  flex-shrink: 0;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.09);
+  background: #fff;
+  color: #445e7c;
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+.checkedButton {
+  width: 143.5px;
+  max-width: 143.5px;
+  height: 78px;
+  max-height: 78px;
+  flex-grow: 1;
+  flex-shrink: 0;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.09);
+  background: linear-gradient(
+    161deg,
+    #6714cc 0%,
+    #6714cc 12.73%,
+    #2e68f5 72.95%
+  );
+  color: #ffff;
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+.hireButton {
+  display: inline-flex;
+  height: 60px;
+  padding: 0px 35.914px 0px 31.086px;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 100px;
+  background: linear-gradient(
+    161deg,
+    #6714cc 0%,
+    #6714cc 12.73%,
+    #2e68f5 72.95%
+  );
+  color: #fff;
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 30px;
+}
