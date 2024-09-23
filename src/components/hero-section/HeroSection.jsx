@@ -15,7 +15,6 @@ const HeroSection = () => {
     { key: 'lead', label: 'Lead Engineer', active: false },
   ]);
 
-
   const handleClick = (button) => {
     setClicked(button);
   };
@@ -72,8 +71,8 @@ const HeroSection = () => {
       <div className={styles.checkBoxContainer}>
         {roles.map((role) => (
           <button
-            key={role.key}
-            className={` ${
+            key={role.key} // Unique key based on role.key
+            className={`${
               role.active ? styles.checkedButton : styles.checkButton
             }`}
             onClick={() => handleCheckboxClick(role.key)}
