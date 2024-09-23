@@ -71,7 +71,7 @@ const HeroSection = () => {
       <div className={styles.checkBoxContainer}>
         {roles.map((role) => (
           <button
-            key={role.key} // Unique key based on role.key
+            key={role.key} 
             className={`${
               role.active ? styles.checkedButton : styles.checkButton
             }`}

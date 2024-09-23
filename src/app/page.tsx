@@ -1,9 +1,8 @@
 import React from 'react'
-import HeroSection from '../components/hero-section/HeroSection'
-
+import SkillSection from '../components/skills-section/SkillSection'
 const Homepage = () => {
   return (
-    <HeroSection />
+    <SkillSection />
   )
 }
 
