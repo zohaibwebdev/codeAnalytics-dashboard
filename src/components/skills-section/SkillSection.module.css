@@ -41,7 +41,7 @@
 }
 .prevButton {
   color: #9f9f9f;
-  font-family: Poppins;
+  font-family: 'Poppins', sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -59,7 +59,7 @@
   color: #ffff;
   color: #fff;
 
-  font-family: Poppins;
+  font-family: 'Poppins', sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -69,7 +69,7 @@
 .headingContainer h1 {
   text-align: center;
   color: #000;
-  font-family: Poppins;
+  font-family: 'Poppins', sans-serif;
   font-size: 36px;
   font-style: normal;
   font-weight: 500;
@@ -80,7 +80,7 @@
   text-align: center;
   margin-top: 20px;
   color: #9f9f9f;
-  font-family: Roboto;
+  font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-size: 24px;
   font-style: normal;
@@ -94,7 +94,7 @@
   border-radius: 4px;
   border: 1px solid #ccc;
   color: #808080;
-  font-family: Roboto;
+  font-family: 'Roboto', sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
@@ -105,7 +105,7 @@
 .skills h1 {
   margin-top: 30px;
   color: #000;
-  font-family: Roboto;
+  font-family:'Roboto', sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 500;
@@ -129,7 +129,7 @@
   border: 1px solid #9f9f9f;
   padding: 8px 12px;
   color: #000;
-  font-family: Roboto;
+  font-family: 'Roboto', sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;

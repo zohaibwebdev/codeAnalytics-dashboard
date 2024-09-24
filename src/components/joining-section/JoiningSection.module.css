@@ -44,7 +44,7 @@
 
 .prevButton {
   color: #9f9f9f;
-  font-family: Poppins;
+  font-family: 'Poppins', sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -62,7 +62,7 @@
   border-radius: 40px;
   background: #9f9f9f;
   color: #fff;
-  font-family: Poppins;
+  font-family: 'Poppins', sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -73,7 +73,7 @@
   margin-top: 50px;
   text-align: center;
   color: #000;
-  font-family: Poppins;
+  font-family:'Poppins', sans-serif;
   font-size: 36px;
   font-style: normal;
   font-weight: 500;
@@ -84,7 +84,7 @@
   text-align: center;
   margin-top: 20px;
   color: #9f9f9f;
-  font-family: Roboto;
+  font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-size: 20px;
   font-style: normal;
@@ -115,7 +115,7 @@
   
 }
 .panel p {
-  font-family: Poppins;
+  font-family: 'Poppins', sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
