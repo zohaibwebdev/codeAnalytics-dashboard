@@ -35,6 +35,9 @@ const SkillSection = () => {
                 ))}
             </div>
         </div>
+        <div className={styles.continue}>
+          <button className={styles.nextButton}>Continue <span className={styles.continueSpan}>&rarr;</span></button>
+        </div>
       </div>
     </section>
   );

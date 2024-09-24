@@ -133,3 +133,12 @@
   font-weight: 400;
   line-height: 22.14px;
 }
+.continue{
+  margin-top: 30px;
+  text-align: center;
+}
+.continueSpan{
+  font-size: 22px;
+  font-weight: bold;
+  margin-left: 10px;
+}
