@@ -2,18 +2,21 @@
 import React, { useState } from "react";
 import styles from "./JoiningSection.module.css";
 import Image from "next/image";
+import { useMultiStepForm } from '../../context/MultiStepContext';
 
 const JoiningSection = () => {
+  const {next, back} = useMultiStepForm()
   const [progressWidth, setProgressWidth] = useState(40);
-
+  const handleNext = ()=> next()
+  const handleBack = ()=> back()
   return (
     <section className={styles.joiningSection}>
       <div className={styles.mainContainer}>
         <div className={styles.navContainer}>
-          <button className={styles.prevButton}>
+          <button className={styles.prevButton} onClick={handleBack}>
             <span>&lt;</span> Previous Question
           </button>
-          <button className={styles.nextButton}>40% Complete</button>
+          <button className={styles.nextButton} >40% Complete</button>
         </div>
         <div className={styles.headingContainer}>
           <h1>When do you need the developer to start?</h1>

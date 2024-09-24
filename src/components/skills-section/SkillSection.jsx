@@ -1,17 +1,22 @@
 'use client'
 import React, { useState } from "react";
 import styles from "./SkillSection.module.css";
+import { useMultiStepForm } from '../../context/MultiStepContext';
+
 
 const SkillSection = () => {
     const skills = ['CSS','React','Node js','Angular','Python','DevOps', 'Swift','ReactNative','Andriod','IOS','Java','Ruby on Rails', 'Go','Vue JS','php','Machine Learning','TypeScript','JavaScript','NLP','Generative AI','LLM','Data Science','Others','Im not sure'
     ]
 
-    const [progressWidth, setProgressWidth] = useState(40);
+    const [progressWidth, setProgressWidth] = useState(0);
+    const {next, back} = useMultiStepForm()
+    const handleNext = ()=> next()
+    const handleBack = () => back()
   return (
     <section className={styles.skillSection}>
       <div className={styles.mainContainer}>
         <div className={styles.navContainer}>
-          <button className={styles.prevButton}>
+          <button className={styles.prevButton} onClick={handleBack}>
             <span>&lt;</span> Previous Question
           </button>
 
@@ -39,7 +44,7 @@ const SkillSection = () => {
             </div>
         </div>
         <div className={styles.continue}>
-          <button className={styles.nextButton}>Continue <span className={styles.continueSpan}>&rarr;</span></button>
+          <button className={styles.nextButton} onClick={handleNext}>Continue <span className={styles.continueSpan}>&rarr;</span></button>
         </div>
       </div>
       <div className={styles.progress}>

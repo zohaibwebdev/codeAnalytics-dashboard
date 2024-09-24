@@ -1,8 +1,11 @@
 'use client';
 import React, { useState } from 'react';
 import styles from './HeroSection.module.css';
+import { useMultiStepForm } from '../../context/MultiStepContext';
+
 
 const HeroSection = () => {
+  const {next} = useMultiStepForm()
   const [clicked, setClicked] = useState(null);
   const [roles, setRoles] = useState([
     { key: 'frontend', label: 'Front End Developer', active: false },
@@ -26,7 +29,7 @@ const HeroSection = () => {
       )
     );
   };
-
+  const handleNext = ()=> next()
   return (
     <section className={styles.heroSection}>
       <div className={styles.headingContainer}>
@@ -81,7 +84,7 @@ const HeroSection = () => {
           </button>
         ))}
       </div>
-      <button className={styles.hireButton}>Request Candidate</button>
+      <button className={styles.hireButton} onClick={handleNext}>Request Candidate</button>
     </section>
   );
 };

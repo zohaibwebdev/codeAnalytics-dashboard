@@ -2,16 +2,21 @@
 import React, { useState } from "react";
 import styles from "./HireSection.module.css";
 import Image from "next/image";
+import { useMultiStepForm } from '../../context/MultiStepContext';
+
 const HireSection = () => {
+  const {next, back} = useMultiStepForm()
+  const handleNext = ()=> next()
+  const handleBack = ()=> back()
   const [progressWidth, setProgressWidth] = useState(20);
   return (
     <section className={styles.hireSection}>
       <div className={styles.mainContainer}>
         <div className={styles.navContainer}>
-          <button className={styles.prevButton}>
+          <button className={styles.prevButton} onClick={handleBack}>
             <span>&lt;</span> Previous Question
           </button>
-          <button className={styles.nextButton}>20% Complete</button>
+          <button className={styles.nextButton} onClick={handleNext}>20% Complete</button>
         </div>
         <div className={styles.headingContainer}>
           <h1>How many team members do you require?</h1>
