@@ -1,9 +1,12 @@
-import React from "react";
+'use client'
+import React, { useState } from "react";
 import styles from "./SkillSection.module.css";
 
 const SkillSection = () => {
     const skills = ['CSS','React','Node js','Angular','Python','DevOps', 'Swift','ReactNative','Andriod','IOS','Java','Ruby on Rails', 'Go','Vue JS','php','Machine Learning','TypeScript','JavaScript','NLP','Generative AI','LLM','Data Science','Others','Im not sure'
     ]
+
+    const [progressWidth, setProgressWidth] = useState(40);
   return (
     <section className={styles.skillSection}>
       <div className={styles.mainContainer}>
@@ -39,6 +42,12 @@ const SkillSection = () => {
           <button className={styles.nextButton}>Continue <span className={styles.continueSpan}>&rarr;</span></button>
         </div>
       </div>
+      <div className={styles.progress}>
+          <div
+            className={styles.progressBar}
+            style={{ width: `${progressWidth}%` }}
+          ></div>
+        </div>
     </section>
   );
 };

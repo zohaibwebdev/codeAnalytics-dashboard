@@ -6,6 +6,8 @@
   align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
+  min-height: 100vh !important;
+  justify-content: space-between;
 }
 
 .mainContainer {
@@ -141,4 +143,19 @@
   font-size: 22px;
   font-weight: bold;
   margin-left: 10px;
+}
+.progress{
+  margin-top: 40px;
+  width:70%;
+  height: 15px;
+  border-radius: 50px;
+  overflow: hidden;
+  background-color: #D9D9D9;
+  align-self: center;
+
+}
+.progressBar{
+  background-color: #4A40EE;
+  border-radius: 50px;
+  height: 100%;
 }
