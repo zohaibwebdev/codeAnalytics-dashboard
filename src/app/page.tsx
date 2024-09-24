@@ -4,8 +4,8 @@ import HireSection from '../components/hire-section/HireSection'
 import JoiningSection from '../components/joining-section/JoiningSection'
 const Homepage = () => {
   return (
-    <SkillSection />
-    // <HireSection />
+    // <SkillSection />
+    <HireSection />
     // <JoiningSection />
   )
 }
