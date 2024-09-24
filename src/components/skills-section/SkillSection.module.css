@@ -135,9 +135,16 @@
   font-weight: 400;
   line-height: 22.14px;
 }
+.checked{
+  color: white;
+  background-color: #9f9f9f;
+}
 .continue{
-  margin-top: 30px;
-  text-align: center;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
 }
 .continueSpan{
   font-size: 22px;
@@ -158,4 +165,9 @@
   background-color: #4A40EE;
   border-radius: 50px;
   height: 100%;
+}
+.error{
+  color: red;
+  font: 14px;
+  font-weight: bold;
 }

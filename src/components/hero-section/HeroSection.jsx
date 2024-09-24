@@ -1,35 +1,79 @@
-'use client';
-import React, { useState } from 'react';
-import styles from './HeroSection.module.css';
-import { useMultiStepForm } from '../../context/MultiStepContext';
+"use client";
+import React, { useState, useEffect } from "react";
+import styles from "./HeroSection.module.css";
+import { useMultiStepForm } from "../../context/MultiStepContext";
 
+const teamData = [
+  { key: "frontend", label: "Front End Developer" },
+  { key: "backend", label: "Back End Developer" },
+  { key: "fullstack", label: "Full Stack Developer" },
+  { key: "devops", label: "DevOps Engineer" },
+  { key: "ai", label: "AI Engineer" },
+  { key: "data", label: "Data Scientist" },
+  { key: "qa", label: "QA Engineer" },
+  { key: "lead", label: "Lead Engineer" },
+];
+
+const productData = [
+  { key: "webapp", label: "Web Application" },
+  { key: "mobileapp", label: "Mobile Application" },
+  { key: "saas", label: "SaaS Platform" },
+  { key: "ecommerce", label: "E-commerce Solution" },
+  { key: "dashboard", label: "Data Dashboard" },
+  { key: "crm", label: "CRM System" },
+  { key: "cms", label: "Content Management System" },
+  { key: "api", label: "API Development" },
+];
+
+const llmServicesData = [
+  { key: "chatbot", label: "Chatbot Development" },
+  { key: "summarization", label: "Text Summarization" },
+  { key: "translation", label: "Machine Translation" },
+  { key: "contentgen", label: "Content Generation" },
+  { key: "sentiment", label: "Sentiment Analysis" },
+  { key: "questionanswering", label: "Question Answering Systems" },
+  { key: "customllm", label: "Custom LLM Solutions" },
+];
 
 const HeroSection = () => {
-  const {next} = useMultiStepForm()
-  const [clicked, setClicked] = useState(null);
-  const [roles, setRoles] = useState([
-    { key: 'frontend', label: 'Front End Developer', active: false },
-    { key: 'backend', label: 'Back End Developer', active: false },
-    { key: 'fullstack', label: 'Full Stack Developer', active: false },
-    { key: 'devops', label: 'DevOps Engineer', active: false },
-    { key: 'ai', label: 'AI Engineer', active: false },
-    { key: 'data', label: 'Data Scientist', active: false },
-    { key: 'qa', label: 'QA Engineer', active: false },
-    { key: 'lead', label: 'Lead Engineer', active: false },
-  ]);
+  const { next } = useMultiStepForm();
+  const [clicked, setClicked] = useState("team");
+  const [activeRoles, setActiveRoles] = useState(new Set());
+  const [error, setError] = useState(null);
+  const [refresh, setRefresh] = useState(false); // State to force re-render
 
   const handleClick = (button) => {
     setClicked(button);
   };
 
   const handleCheckboxClick = (key) => {
-    setRoles((prevRoles) =>
-      prevRoles.map((role) =>
-        role.key === key ? { ...role, active: !role.active } : role
-      )
-    );
+    setActiveRoles((prevActiveRoles) => {
+      const newActiveRoles = new Set(prevActiveRoles);
+      if (newActiveRoles.has(key)) {
+        newActiveRoles.delete(key);
+      } else {
+        newActiveRoles.add(key);
+      }
+      return newActiveRoles; // Return updated roles
+    });
+    setError(false); // Reset error state on checkbox click
+
+    // Force a re-render
+    setRefresh((prev) => !prev); // Toggle refresh state
   };
-  const handleNext = ()=> next()
+
+  const isAnyCheckboxActive = activeRoles.size > 0;
+
+  const handleNext = () => {
+    if (isAnyCheckboxActive) {
+      next();
+    } else {
+      setError(true);
+    }
+  };
+
+  const roles = clicked === "team" ? teamData : clicked === "product" ? productData : llmServicesData;
+
   return (
     <section className={styles.heroSection}>
       <div className={styles.headingContainer}>
@@ -44,27 +88,20 @@ const HeroSection = () => {
           </p>
           <div className={styles.headingButtons}>
             <button
-              className={`${styles.button} ${
-                clicked === 'team' ? styles.clicked : ''
-              }`}
-              onClick={() => handleClick('team')}
+              className={`${styles.button} ${clicked === "team" ? styles.clicked : ""}`}
+              onClick={() => handleClick("team")}
             >
-              <span>⚡</span>
-              Build a Team
+              <span>⚡</span> Build a Team
             </button>
             <button
-              className={`${styles.button} ${
-                clicked === 'product' ? styles.clicked : ''
-              }`}
-              onClick={() => handleClick('product')}
+              className={`${styles.button} ${clicked === "product" ? styles.clicked : ""}`}
+              onClick={() => handleClick("product")}
             >
               Build a Product
             </button>
             <button
-              className={`${styles.button} ${
-                clicked === 'llm' ? styles.clicked : ''
-              }`}
-              onClick={() => handleClick('llm')}
+              className={`${styles.button} ${clicked === "llm" ? styles.clicked : ""}`}
+              onClick={() => handleClick("llm")}
             >
               LLM Services
             </button>
@@ -73,18 +110,23 @@ const HeroSection = () => {
       </div>
       <div className={styles.checkBoxContainer}>
         {roles.map((role) => (
-          <button
-            key={role.key} 
-            className={`${
-              role.active ? styles.checkedButton : styles.checkButton
-            }`}
+          <div
+            key={role.key}
+            className={`${activeRoles.has(role.key) ? styles.checkedButton : styles.checkButton}`}
             onClick={() => handleCheckboxClick(role.key)}
           >
             {role.label}
-          </button>
+          </div>
         ))}
       </div>
-      <button className={styles.hireButton} onClick={handleNext}>Request Candidate</button>
+      <div className={styles.next}>
+        <button className={styles.hireButton} onClick={handleNext}>
+          Request Candidate
+        </button>
+        {error && (
+          <p className={styles.error}>Please select at least one checkbox</p>
+        )}
+      </div>
     </section>
   );
 };

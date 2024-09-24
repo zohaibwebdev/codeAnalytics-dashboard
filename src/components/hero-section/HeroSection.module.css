@@ -128,8 +128,7 @@
 
 .button:hover,
 .button:active,
-.clicked,
-.checkButton:hover {
+.clicked {
   background: linear-gradient(
     161deg,
     #6714cc 0%,
@@ -169,6 +168,7 @@
   display: flex;
   align-items: center;
   padding-left: 10px;
+  cursor: pointer;
 }
 .checkedButton {
   width: 143.5px;
@@ -194,13 +194,10 @@
   display: flex;
   align-items: center;
   padding-left: 10px;
+  cursor: pointer;
 }
 .hireButton {
-  display: inline-flex;
-  height: 60px;
-  padding: 0px 35.914px 0px 31.086px;
-  align-items: center;
-  flex-shrink: 0;
+  padding: 20px 32px;
   border-radius: 100px;
   background: linear-gradient(
     161deg,
@@ -214,5 +211,20 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+  font-size: 14px;
+  margin: 0; 
+}
+
+.next {
   margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center; 
+  width: 100%;
 }
