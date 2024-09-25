@@ -15,6 +15,7 @@ const SkillSection = () => {
 
     const [selected, setSelected] = useState([]);
     const [error, setError] = useState(null);
+    const [inputValue, setInputValue] = useState("");
 
     useEffect(() => {
         // Set the selected skills based on the selectedSkills from context
@@ -22,11 +23,14 @@ const SkillSection = () => {
     }, [selectedSkills]);
 
     const handleSkillClick = (skill) => {
-        setSelected((prevSelected) =>
-            prevSelected.includes(skill)
-                ? prevSelected.filter((s) => s !== skill)
-                : [...prevSelected, skill]
-        );
+        setSelected((prevSelected) => {
+            // If the skill is already selected, remove it
+            if (prevSelected.includes(skill)) {
+                return prevSelected.filter((s) => s !== skill);
+            }
+            // Otherwise, add it to the selected skills
+            return [...prevSelected, skill];
+        });
         setError(false);
     };
 
@@ -40,6 +44,25 @@ const SkillSection = () => {
     };
 
     const handleBack = () => back();
+
+    // Filter skills based on the input value
+    const filteredSkills = skills.filter(skill =>
+        skill.toLowerCase().includes(inputValue.toLowerCase())
+    );
+
+    // Handle Enter key press
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            if (filteredSkills.length === 1) { // If exactly one skill is filtered
+                const skillToSelect = filteredSkills[0];
+                // Add the skill if it's not already selected
+                if (!selected.includes(skillToSelect)) {
+                    setSelected((prevSelected) => [...prevSelected, skillToSelect]);
+                }
+                setInputValue(""); // Clear the input after adding
+            }
+        }
+    };
 
     return (
         <section className={styles.skillSection}>
@@ -59,16 +82,30 @@ const SkillSection = () => {
                         type="text"
                         className={styles.input}
                         placeholder="Desired areas of expertise (e.g., JavaScript, Python, etc.)"
+                        value={inputValue}
+                        onChange={(e) => setInputValue(e.target.value)}
+                        onKeyDown={handleKeyDown} // Add key down event handler
                     />
+                    <div className={styles.selectedSkills}>
+                        {selected.map((label, index) => (
+                            <div
+                                key={index}
+                                className={`${styles.selected}`}
+                                onClick={() => handleSkillClick(label)} // Enable unselection on click
+                            >
+                                {label}
+                            </div>
+                        ))}
+                    </div>
                 </div>
                 <div className={styles.skills}>
                     <h1>Popular skills for <span>Developer:</span></h1>
                     <div className={styles.skillSet}>
-                        {skills.map((label, index) => (
+                        {filteredSkills.map((label, index) => (
                             <div
                                 key={index}
                                 className={`${styles.skill} ${selected.includes(label) ? styles.checked : ''}`}
-                                onClick={() => handleSkillClick(label)}
+                                onClick={() => handleSkillClick(label)} // Enable selection on click
                             >
                                 <span>+</span> {label}
                             </div>
