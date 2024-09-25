@@ -2,12 +2,10 @@
 import React, { useState } from "react";
 import styles from "./JoiningSection.module.css";
 import Image from "next/image";
-import { useMultiStepForm } from '../../context/MultiStepContext';
 import { useFormData } from "@/context/form-data-context/form-data";
 
 const JoiningSection = () => {
-  const { setJoining } = useFormData(); 
-  const { next, back, progress } = useMultiStepForm();
+  const { setJoining, next, back, progress } = useFormData(); 
 
  
   const handlePanelClick = (label) => {

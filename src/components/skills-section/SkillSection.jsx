@@ -1,12 +1,10 @@
 'use client';
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./SkillSection.module.css";
-import { useMultiStepForm } from '../../context/MultiStepContext';
 import { useFormData } from "@/context/form-data-context/form-data";
 
 const SkillSection = () => {
-
-    const {setSkills} = useFormData()
+    const { setSkills, next, back, progress, selectedSkills } = useFormData();
     const skills = [
         'CSS', 'React', 'Node js', 'Angular', 'Python', 'DevOps',
         'Swift', 'ReactNative', 'Android', 'IOS', 'Java', 'Ruby on Rails',
@@ -15,25 +13,29 @@ const SkillSection = () => {
         'Others', 'I am not sure'
     ];
 
-    const [selectedSkills, setSelectedSkills] = useState([]);
-    const [error, setError] = useState(null)
-    const { next, back, progress } = useMultiStepForm();
+    const [selected, setSelected] = useState([]);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        // Set the selected skills based on the selectedSkills from context
+        setSelected(selectedSkills);
+    }, [selectedSkills]);
 
     const handleSkillClick = (skill) => {
-        setSelectedSkills((prevSelected) =>
+        setSelected((prevSelected) =>
             prevSelected.includes(skill)
                 ? prevSelected.filter((s) => s !== skill)
                 : [...prevSelected, skill]
         );
-        setError(false)
+        setError(false);
     };
 
     const handleNext = () => {
-        if (selectedSkills.length > 0) {
-           setSkills(selectedSkills)
+        if (selected.length > 0) {
+            setSkills(selected);
             next(); 
         } else {
-           setError(prev => !prev)
+            setError(true);
         }
     };
 
@@ -65,7 +67,7 @@ const SkillSection = () => {
                         {skills.map((label, index) => (
                             <div
                                 key={index}
-                                className={`${styles.skill} ${selectedSkills.includes(label) ? styles.checked : ''}`}
+                                className={`${styles.skill} ${selected.includes(label) ? styles.checked : ''}`}
                                 onClick={() => handleSkillClick(label)}
                             >
                                 <span>+</span> {label}

@@ -1,19 +1,14 @@
+import { useFormData } from '@/context/form-data-context/form-data';
 import React from 'react';
-import { MultiStepProvider, useMultiStepForm } from '../../context/MultiStepContext';
 
-const MultiStepForm = () => {
-  const { step } = useMultiStepForm(); 
+const MultiStepWrapper = () => {
+  const { currentStep } = useFormData(); 
+
   return (
     <>
-      {step}
+      {currentStep}
     </>
   );
 };
-
-const MultiStepWrapper = () => (
-  <MultiStepProvider>
-    <MultiStepForm />
-  </MultiStepProvider>
-);
 
 export default MultiStepWrapper;

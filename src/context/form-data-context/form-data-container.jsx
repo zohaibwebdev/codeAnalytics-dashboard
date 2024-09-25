@@ -1,54 +1,91 @@
 import React, { useState } from "react";
 import { FormDataProvider } from "./form-data";
+import HeroSection from "@/components/hero-section/HeroSection";
+import SkillSection from "@/components/skills-section/SkillSection";
+import JoiningSection from "@/components/joining-section/JoiningSection";
+import HireSection from "@/components/hire-section/HireSection";
 
 const FormDataContainer = ({ children }) => {
+  const steps = [
+    <HeroSection />,
+    <SkillSection />,
+    <HireSection />,
+    <JoiningSection />,
+  ];
+
   const [state, setState] = useState({
-    selectedLabel: "",
+    currentStepIndex: 0,
+    selectedLabel: "team",
     selectedRoles: [],
     selectedSkills: [],
     hiringQty: "",
     joining: "",
   });
 
-  const setLabelandRoles = (label, roles) => {
-    setState(function (prev) {
-      return {
-        ...prev,
-        selectedLabel: label,
-        selectedRoles: roles,
-      };
-    });
+  const next = () => {
+    setState((prev) => ({
+      ...prev,
+      currentStepIndex: Math.min(prev.currentStepIndex + 1, steps.length - 1),
+    }));
   };
 
-  const setSkills = (selectedskillSet) => {
-    setState(function (prev) {
-      return {
-        ...prev,
-        selectedSkills: selectedskillSet,
-      };
-    });
+  const back = () => {
+    setState((prev) => ({
+      ...prev,
+      currentStepIndex: Math.max(prev.currentStepIndex - 1, 0),
+    }));
   };
+
+  const progress = Math.round((state.currentStepIndex / (steps.length - 1)) * 100);
+
+  const currentStep = steps[state.currentStepIndex];
+
+  const setLabelandRoles = (label, roles) => {
+    setState((prev) => ({
+      ...prev,
+      selectedLabel: label,
+      selectedRoles: roles,
+    }));
+  };
+
+  const setSkills = (selectedSkillSet) => {
+    setState((prev) => ({
+      ...prev,
+      selectedSkills: selectedSkillSet,
+    }));
+  };
+
   const setQty = (qty) => {
-    setState(function (prev) {
-      return {
-        ...prev,
-        hiringQty: qty,
-      };
-    });
+    setState((prev) => ({
+      ...prev,
+      hiringQty: qty,
+    }));
   };
 
   const setJoining = (joining) => {
-    setState(function (prev) {
-      return {
-        ...prev,
-        joining,
-      };
-    });
+    setState((prev) => ({
+      ...prev,
+      joining,
+    }));
   };
-  console.log('main state--> ', state)
+
+  if (process.env.NODE_ENV === 'development') {
+    console.log('main state--> ', state);
+  }
+
   return (
     <FormDataProvider
-      value={{ ...state, setLabelandRoles, setSkills, setQty, setJoining }}
+      value={{
+        ...state,
+        currentStep, 
+        setLabelandRoles,
+        setSkills,
+        setQty,
+        setJoining,
+        next,
+        back,
+        progress,
+      }}
     >
       {children}
     </FormDataProvider>

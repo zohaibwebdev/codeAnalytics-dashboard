@@ -2,14 +2,12 @@
 import React from "react";
 import styles from "./HireSection.module.css";
 import Image from "next/image";
-import { useMultiStepForm } from '../../context/MultiStepContext';
 import { useFormData } from "@/context/form-data-context/form-data";
 
 const HireSection = () => {
-  const { setQty } = useFormData();
-  const { next, back, progress } = useMultiStepForm();
+  const { setQty, next, back, progress } = useFormData();
   
-  const handleBack = ()=> back()
+  const handleBack = () => back();
   const handlePanelClick = (label) => {
     setQty(label);
     next();
@@ -39,6 +37,7 @@ const HireSection = () => {
               width={60} 
               height={60} 
               alt="One engineer icon"
+              style={{ width: "60px", height: "auto" }} // Adjust width or height to maintain aspect ratio
             />
             <p>One Engineer</p>
           </div>
@@ -48,6 +47,7 @@ const HireSection = () => {
               width={60} 
               height={60} 
               alt="Small team icon"
+              style={{ width: "60px", height: "auto" }} // Adjust width or height to maintain aspect ratio
             />
             <p>A small team</p>
           </div>
@@ -57,6 +57,7 @@ const HireSection = () => {
               width={60} 
               height={60} 
               alt="Large team icon"
+              style={{ width: "60px", height: "auto" }} // Adjust width or height to maintain aspect ratio
             />
             <p>A large team</p>
           </div>
@@ -66,6 +67,7 @@ const HireSection = () => {
               width={60} 
               height={60} 
               alt="Not sure icon"
+              style={{ width: "60px", height: "auto" }} // Adjust width or height to maintain aspect ratio
             />
             <p>I am not sure</p>
           </div>

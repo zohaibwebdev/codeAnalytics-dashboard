@@ -1,7 +1,6 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./HeroSection.module.css";
-import { useMultiStepForm } from "../../context/MultiStepContext";
 import { useFormData } from "@/context/form-data-context/form-data";
 
 const teamData = [
@@ -37,11 +36,20 @@ const llmServicesData = [
 ];
 
 const HeroSection = () => {
-  const { setLabelandRoles } = useFormData();
-  const { next } = useMultiStepForm();
-  const [clicked, setClicked] = useState("team");
-  const [activeRoles, setActiveRoles] = useState([]);
+  const { selectedLabel, selectedRoles, setLabelandRoles, next } = useFormData();
+  const [clicked, setClicked] = useState(selectedLabel);
+  const [activeRoles, setActiveRoles] = useState(selectedRoles);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    // Update the clicked state based on the selectedLabel from context
+    setClicked(selectedLabel);
+  }, [selectedLabel]);
+
+  useEffect(() => {
+    // Update activeRoles from context on mount
+    setActiveRoles(selectedRoles);
+  }, [selectedRoles]);
 
   const handleClick = (button) => {
     setClicked(button);
