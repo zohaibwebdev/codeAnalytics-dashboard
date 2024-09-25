@@ -13,23 +13,20 @@ const SkillSection = () => {
         'Others', 'I am not sure'
     ];
 
-    const [skills, setSkillsList] = useState(initialSkills); // State to manage skills
+    const [skills, setSkillsList] = useState(initialSkills);
     const [selected, setSelected] = useState([]);
     const [error, setError] = useState(null);
     const [inputValue, setInputValue] = useState("");
 
     useEffect(() => {
-        // Set the selected skills based on the selectedSkills from context
         setSelected(selectedSkills);
     }, [selectedSkills]);
 
     const handleSkillClick = (skill) => {
         setSelected((prevSelected) => {
-            // If the skill is already selected, remove it
             if (prevSelected.includes(skill)) {
                 return prevSelected.filter((s) => s !== skill);
             }
-            // Otherwise, add it to the selected skills
             return [...prevSelected, skill];
         });
         setError(false);
@@ -46,25 +43,22 @@ const SkillSection = () => {
 
     const handleBack = () => back();
 
-    // Filter skills based on the input value
+    
     const filteredSkills = skills.filter(skill =>
         skill.toLowerCase().includes(inputValue.toLowerCase())
     );
 
-    // Handle Enter key press
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
             const trimmedInput = inputValue.trim();
             if (filteredSkills.length === 1 && !selected.includes(filteredSkills[0])) {
-                // If there's exactly one skill matching, select it
                 const skillToSelect = filteredSkills[0];
                 setSelected((prevSelected) => [...prevSelected, skillToSelect]);
             } else if (trimmedInput && !skills.includes(trimmedInput)) {
-                // If the input is not empty and not in the skill list, add it
-                setSkillsList((prevSkills) => [...prevSkills, trimmedInput]); // Add to skills array
-                setSelected((prevSelected) => [...prevSelected, trimmedInput]); // Select the new skill
+                setSkillsList((prevSkills) => [...prevSkills, trimmedInput]); 
+                setSelected((prevSelected) => [...prevSelected, trimmedInput]);
             }
-            setInputValue(""); // Clear the input after adding
+            setInputValue("");
         }
     };
 

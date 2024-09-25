@@ -14,7 +14,7 @@ const FormDataContainer = ({ children }) => {
   ];
 
   const [state, setState] = useState({
-    currentStepIndex: 1,
+    currentStepIndex: 0,
     selectedLabel: "team",
     selectedRoles: [],
     selectedSkills: [],
