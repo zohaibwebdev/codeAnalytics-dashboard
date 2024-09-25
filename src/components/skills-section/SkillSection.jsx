@@ -2,8 +2,11 @@
 import React, { useState } from "react";
 import styles from "./SkillSection.module.css";
 import { useMultiStepForm } from '../../context/MultiStepContext';
+import { useFormData } from "@/context/form-data-context/form-data";
 
 const SkillSection = () => {
+
+    const {setSkills} = useFormData()
     const skills = [
         'CSS', 'React', 'Node js', 'Angular', 'Python', 'DevOps',
         'Swift', 'ReactNative', 'Android', 'IOS', 'Java', 'Ruby on Rails',
@@ -27,6 +30,7 @@ const SkillSection = () => {
 
     const handleNext = () => {
         if (selectedSkills.length > 0) {
+           setSkills(selectedSkills)
             next(); 
         } else {
            setError(prev => !prev)

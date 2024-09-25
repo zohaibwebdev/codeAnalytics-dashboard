@@ -1,7 +1,8 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from "./HeroSection.module.css";
 import { useMultiStepForm } from "../../context/MultiStepContext";
+import { useFormData } from "@/context/form-data-context/form-data";
 
 const teamData = [
   { key: "frontend", label: "Front End Developer" },
@@ -36,36 +37,32 @@ const llmServicesData = [
 ];
 
 const HeroSection = () => {
+  const { setLabelandRoles } = useFormData();
   const { next } = useMultiStepForm();
   const [clicked, setClicked] = useState("team");
-  const [activeRoles, setActiveRoles] = useState(new Set());
+  const [activeRoles, setActiveRoles] = useState([]);
   const [error, setError] = useState(null);
-  const [refresh, setRefresh] = useState(false); // State to force re-render
 
   const handleClick = (button) => {
     setClicked(button);
   };
 
-  const handleCheckboxClick = (key) => {
+  const handleCheckboxClick = (label) => {
     setActiveRoles((prevActiveRoles) => {
-      const newActiveRoles = new Set(prevActiveRoles);
-      if (newActiveRoles.has(key)) {
-        newActiveRoles.delete(key);
+      if (prevActiveRoles.includes(label)) {
+        return prevActiveRoles.filter((role) => role !== label); // Remove the role
       } else {
-        newActiveRoles.add(key);
+        return [...prevActiveRoles, label]; // Add the role
       }
-      return newActiveRoles; // Return updated roles
     });
     setError(false); // Reset error state on checkbox click
-
-    // Force a re-render
-    setRefresh((prev) => !prev); // Toggle refresh state
   };
 
-  const isAnyCheckboxActive = activeRoles.size > 0;
+  const isAnyCheckboxActive = activeRoles.length > 0;
 
   const handleNext = () => {
     if (isAnyCheckboxActive) {
+      setLabelandRoles(clicked, activeRoles); // Use activeRoles (array of labels) here
       next();
     } else {
       setError(true);
@@ -112,8 +109,8 @@ const HeroSection = () => {
         {roles.map((role) => (
           <div
             key={role.key}
-            className={`${activeRoles.has(role.key) ? styles.checkedButton : styles.checkButton}`}
-            onClick={() => handleCheckboxClick(role.key)}
+            className={`${activeRoles.includes(role.label) ? styles.checkedButton : styles.checkButton}`}
+            onClick={() => handleCheckboxClick(role.label)}
           >
             {role.label}
           </div>

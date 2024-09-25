@@ -1,16 +1,18 @@
 'use client';
-import React, { useState } from "react";
+import React from "react";
 import styles from "./HireSection.module.css";
 import Image from "next/image";
 import { useMultiStepForm } from '../../context/MultiStepContext';
+import { useFormData } from "@/context/form-data-context/form-data";
 
 const HireSection = () => {
+  const { setQty } = useFormData();
   const { next, back, progress } = useMultiStepForm();
-  const handleNext = () => next();
-  const handleBack = () => back();
   
-  const handlePanelClick = () => {
-    handleNext(); 
+  const handleBack = ()=> back()
+  const handlePanelClick = (label) => {
+    setQty(label);
+    next();
   };
 
   return (
@@ -31,20 +33,40 @@ const HireSection = () => {
       </div>
       <div className={styles.spacer}>
         <div className={styles.hireDiv}>
-          <div className={styles.panel} onClick={handlePanelClick}>
-            <Image src="/images/oneEng.png" width={60} height={60} />
+          <div className={styles.panel} onClick={() => handlePanelClick("One Engineer")}>
+            <Image 
+              src="/images/oneEng.png" 
+              width={60} 
+              height={60} 
+              alt="One engineer icon"
+            />
             <p>One Engineer</p>
           </div>
-          <div className={styles.panel} onClick={handlePanelClick}>
-            <Image src="/images/smallteam.png" width={60} height={60} />
+          <div className={styles.panel} onClick={() => handlePanelClick("A small team")}>
+            <Image 
+              src="/images/smallteam.png" 
+              width={60} 
+              height={60} 
+              alt="Small team icon"
+            />
             <p>A small team</p>
           </div>
-          <div className={styles.panel} onClick={handlePanelClick}>
-            <Image src="/images/large-team.png" width={60} height={60} />
+          <div className={styles.panel} onClick={() => handlePanelClick("A large team")}>
+            <Image 
+              src="/images/large-team.png" 
+              width={60} 
+              height={60} 
+              alt="Large team icon"
+            />
             <p>A large team</p>
           </div>
-          <div className={styles.panel} onClick={handlePanelClick}>
-            <Image src="/images/not-sure.png" width={60} height={60} />
+          <div className={styles.panel} onClick={() => handlePanelClick("I am not sure")}>
+            <Image 
+              src="/images/not-sure.png" 
+              width={60} 
+              height={60} 
+              alt="Not sure icon"
+            />
             <p>I am not sure</p>
           </div>
         </div>

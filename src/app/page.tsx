@@ -1,17 +1,14 @@
-'use client'
-import React from 'react'
-import SkillSection from '../components/skills-section/SkillSection'
-import HireSection from '../components/hire-section/HireSection'
-import JoiningSection from '../components/joining-section/JoiningSection'
-import MultiStepForm from '../components/multi-step-form/MultiStepForm'
+"use client";
+import React from "react";
+import FormDataContainer from '../context/form-data-context/form-data-container'
+import MultiStepForm from "../components/multi-step-form/MultiStepForm";
 
 const Homepage = () => {
   return (
-    // <SkillSection />
-    // <HireSection />
-    // <JoiningSection />
-    <MultiStepForm />
-  )
-}
+    <FormDataContainer>
+      <MultiStepForm />
+    </FormDataContainer>
+  );
+};
 
-export default Homepage
+export default Homepage;

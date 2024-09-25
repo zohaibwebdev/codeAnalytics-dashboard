@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
-.joiningSection{
+.joiningSection {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -44,7 +44,7 @@
 
 .prevButton {
   color: #9f9f9f;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -62,7 +62,7 @@
   border-radius: 40px;
   background: #9f9f9f;
   color: #fff;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -73,7 +73,7 @@
   margin-top: 50px;
   text-align: center;
   color: #000;
-  font-family:'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 36px;
   font-style: normal;
   font-weight: 500;
@@ -84,7 +84,7 @@
   text-align: center;
   margin-top: 20px;
   color: #9f9f9f;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 20px;
   font-style: normal;
@@ -112,17 +112,17 @@
   background: #fff;
   box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.02);
   padding: 20px 40px;
-  
+  cursor: pointer;
 }
 .panel p {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
   line-height: 20px;
 }
 
-.spacer{
+.spacer {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -130,18 +130,17 @@
   min-height: 100% !important;
   padding-bottom: 20px;
 }
-.progress{
+.progress {
   margin-top: 40px;
-  width:70%;
+  width: 70%;
   height: 15px;
   border-radius: 50px;
   overflow: hidden;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   align-self: center;
-
 }
-.progressBar{
-  background-color: #4A40EE;
+.progressBar {
+  background-color: #4a40ee;
   border-radius: 50px;
   height: 100%;
 }

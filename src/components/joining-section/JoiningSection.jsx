@@ -3,17 +3,19 @@ import React, { useState } from "react";
 import styles from "./JoiningSection.module.css";
 import Image from "next/image";
 import { useMultiStepForm } from '../../context/MultiStepContext';
+import { useFormData } from "@/context/form-data-context/form-data";
 
 const JoiningSection = () => {
+  const { setJoining } = useFormData(); 
   const { next, back, progress } = useMultiStepForm();
-  const [progressWidth, setProgressWidth] = useState(40);
 
-  const handleNext = () => next();
-  const handleBack = () => back();
-
-  const handlePanelClick = (panelIndex) => {
-    handleNext(); 
+ 
+  const handlePanelClick = (label) => {
+    setJoining(label); 
+    next();
   };
+
+  const handleBack = () => back();
 
   return (
     <section className={styles.joiningSection}>
@@ -31,20 +33,40 @@ const JoiningSection = () => {
       </div>
       <div className={styles.spacer}>
         <div className={styles.joiningDiv}>
-          <div className={styles.panel} onClick={() => handlePanelClick(0)}>
-            <Image src="/images/immediatly.png" width={60} height={60} />
+          <div className={styles.panel} onClick={() => handlePanelClick("Immediately")}>
+            <Image 
+              src="/images/immediatly.png" 
+              width={60} 
+              height={60} 
+              alt="Immediately icon"
+            />
             <p>Immediately</p>
           </div>
-          <div className={styles.panel} onClick={() => handlePanelClick(1)}>
-            <Image src="/images/in-1-week.png" width={60} height={60} />
+          <div className={styles.panel} onClick={() => handlePanelClick("In 1 to 2 weeks")}>
+            <Image 
+              src="/images/in-1-week.png" 
+              width={60} 
+              height={60} 
+              alt="In 1 to 2 weeks icon"
+            />
             <p>In 1 to 2 weeks</p>
           </div>
-          <div className={styles.panel} onClick={() => handlePanelClick(2)}>
-            <Image src="/images/2-weeks.png" width={60} height={60} />
+          <div className={styles.panel} onClick={() => handlePanelClick("> 2 weeks from now")}>
+            <Image 
+              src="/images/2-weeks.png" 
+              width={60} 
+              height={60} 
+              alt="More than 2 weeks icon"
+            />
             <p>&gt; 2 weeks from now</p>
           </div>
-          <div className={styles.panel} onClick={() => handlePanelClick(3)}>
-            <Image src="/images/not-sure.png" width={60} height={60} />
+          <div className={styles.panel} onClick={() => handlePanelClick("I am not sure")}>
+            <Image 
+              src="/images/not-sure.png" 
+              width={60} 
+              height={60} 
+              alt="Not sure icon"
+            />
             <p>I am not sure</p>
           </div>
         </div>
