@@ -5,7 +5,7 @@ import { useFormData } from "@/context/form-data-context/form-data";
 
 const SkillSection = () => {
     const { setSkills, next, back, progress, selectedSkills } = useFormData();
-    const skills = [
+    const initialSkills = [
         'CSS', 'React', 'Node js', 'Angular', 'Python', 'DevOps',
         'Swift', 'ReactNative', 'Android', 'IOS', 'Java', 'Ruby on Rails',
         'Go', 'Vue JS', 'PHP', 'Machine Learning', 'TypeScript',
@@ -13,6 +13,7 @@ const SkillSection = () => {
         'Others', 'I am not sure'
     ];
 
+    const [skills, setSkillsList] = useState(initialSkills); // State to manage skills
     const [selected, setSelected] = useState([]);
     const [error, setError] = useState(null);
     const [inputValue, setInputValue] = useState("");
@@ -53,14 +54,17 @@ const SkillSection = () => {
     // Handle Enter key press
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
-            if (filteredSkills.length === 1) { // If exactly one skill is filtered
+            const trimmedInput = inputValue.trim();
+            if (filteredSkills.length === 1 && !selected.includes(filteredSkills[0])) {
+                // If there's exactly one skill matching, select it
                 const skillToSelect = filteredSkills[0];
-                // Add the skill if it's not already selected
-                if (!selected.includes(skillToSelect)) {
-                    setSelected((prevSelected) => [...prevSelected, skillToSelect]);
-                }
-                setInputValue(""); // Clear the input after adding
+                setSelected((prevSelected) => [...prevSelected, skillToSelect]);
+            } else if (trimmedInput && !skills.includes(trimmedInput)) {
+                // If the input is not empty and not in the skill list, add it
+                setSkillsList((prevSkills) => [...prevSkills, trimmedInput]); // Add to skills array
+                setSelected((prevSelected) => [...prevSelected, trimmedInput]); // Select the new skill
             }
+            setInputValue(""); // Clear the input after adding
         }
     };
 
@@ -93,7 +97,7 @@ const SkillSection = () => {
                                 className={`${styles.selected}`}
                                 onClick={() => handleSkillClick(label)} // Enable unselection on click
                             >
-                                {label}
+                                {label} <span>&times;</span>
                             </div>
                         ))}
                     </div>
@@ -105,7 +109,7 @@ const SkillSection = () => {
                             <div
                                 key={index}
                                 className={`${styles.skill} ${selected.includes(label) ? styles.checked : ''}`}
-                                onClick={() => handleSkillClick(label)} // Enable selection on click
+                                onClick={() => handleSkillClick(label)} 
                             >
                                 <span>+</span> {label}
                             </div>
